@@ -4,6 +4,9 @@
 /docs
 .DS_Store
 AGENTS.md
+/wireframe/
+METHODOLOGY-ALIGNMENT-TODO.md
+/wireframe-proposals/
 
 # Ignore all __pycache__ directories
 __pycache__/
