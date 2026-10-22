@@ -29,7 +29,7 @@
 
 }
 
-/* ------------------------ DEFAULT/GENERAL ------------------- */
+/* ----------------------------- DEFAULT/GENERAL ---------------------------- */
 /* Remove the spaces between page title and footer with the page content */
 [data-testid="stMainBlockContainer"] > div[data-testid="stVerticalBlock"] {
     gap: 0;
@@ -141,6 +141,81 @@ header[data-testid="stHeader"] a[data-testid="stTopNavLink"][aria-current="page"
     box-sizing: border-box;
     font-family: var(--font-sans);
 }
+
+
+/* ---------------------------------------- Footer ------------------------------------- */
+/* ------------- Footer Container background colour ----------------- */
+.st-key-footer {
+    background-color: var(--sage);
+}
+
+/* Footer h2 elements */
+.st-key-footer h2 {
+    margin: 4.46rem 0rem 0rem;
+    font-size: 1.1rem;
+    color: var(--ink);
+}
+
+/* Footer paragraph (p) element */
+.st-key-footer p {
+    font-size: 0.9rem;
+}
+
+/* ------------------- Footer links ------------------------------ */
+/* Normal appearance of every footer link */
+.st-key-footer a,
+.st-key-footer [data-testid="stPageLink-NavLink"] [data-testid="stMarkdownContainer"] {
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-family: var(--font-sans);
+}
+
+/* Appearance when mouse is hovered a link or selected using a keyboard */
+.st-key-footer a:hover,
+.st-key-footer a:focus-visible,
+.st-key-footer a:focus {
+    margin: 0;
+    color: var(--nav-active-colour);
+    text-decoration: underline;
+
+}
+
+/* Appearance when a mouse is hovered a page navigation link or selected using a keyboard */
+.st-key-footer [data-testid="stPageLink-NavLink"],
+.st-key-footer [data-testid="stPageLink-NavLink"]:hover,
+.st-key-footer [data-testid="stPageLink-NavLink"]:active,
+.st-key-footer [data-testid="stPageLink-NavLink"]:focus,
+.st-key-footer [data-testid="stPageLink-NavLink"]:focus-visible {
+    background-color: transparent;
+}
+
+.st-key-footer [data-testid="stPageLink-NavLink"]:hover span,
+.st-key-footer [data-testid="stPageLink-NavLink"]:focus-visible span {
+    color: white;
+    text-decoration: underline;
+}
+
+/* link arrangement */
+/* custom class arrangement */
+.st-key-footer .footer-link-list {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* text line arrangement */
+.st-key-footer .footer-link-list a ,
+.st-key-footer [data-testid="stPageLink-NavLink"] {
+    margin: 0;
+    display: block;
+    padding: 0.33rem 0;
+}
+
+/* Unify display colour for text in footer */
+.st-key-footer a,
+.st-key-footer [data-testid="stPageLink-NavLink"] span {
+    color: var(--muted-text);
+} 
+
 
 /* ------------- Title container and it's content -------------------------*/
 .st-key-title-section {
@@ -524,6 +599,90 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     }
 }
 
+/* -------------------------------- KEY FINDING SECTION -------------------------------- */
+/* ---------------------- Title, header and introduction ---------------------- */
+.st-key-findings-section .section-label {
+    margin: 1.5rem 0 0;
+}
+
+#key-findings {
+    font-family: var(--font-sans);
+}
+
+#key-findings-header {
+    margin: 0 0 0.89rem;
+    color: var(--ink);
+    font-size: clamp(1.875rem, 2.4vw, 2rem);
+    font-weight: 460;
+    line-height: 1.2;
+    letter-spacing: -0.025rem
+}
+
+#key-findings-introduction {
+    margin: 0 0 1.75rem;
+    color: var(--muted-text);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    text-align: start;
+}
+
+/* --------- Score card ----------- */
+/* ----- Default arrangement on screen ------------- */
+#key-findings-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(0.5rem, 3vw, 1rem);
+    line-height: 1.4;
+    margin: 0; 
+}
+
+/* medium and large screen size */
+@media (min-width: 912px) {
+    #key-findings-cards {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0;
+    }
+}
+
+/* --------------- findings grid ------------------------- */
+.score-card {
+    border-top: 2px solid var(--section-rule);
+}
+
+/* Style score card label, value and description */
+.key-findings-card-label {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--muted-text);
+    padding: 1.125rem 0 0.2rem;
+
+}
+
+.key-findings-card-value {
+    margin: 0;
+    font-size: 1.94rem;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 0
+}
+
+.key-findings-card-description {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--muted-text);
+    padding: 0.5rem 0;
+}
+
+.key-findings-card-description .highlight-text {
+    color: blue;
+    font-weight: 500;
+}
+
+.key-findings-card-description .highlight-text.negative {
+    color: red;
+}
 
 /* /* Web app global screen display setting
 :root {
@@ -532,7 +691,7 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     --font-family: "Montserrat", sans-serif;
 }
 
-/* Set streamlit default display setting to 0 */
+/* Set streamlit defaul(t display setting to 0 */
 /* [data-testid="stMainBlockContainer"] {
     max-width: none;
     padding: 0;
@@ -667,93 +826,3 @@ a:focus {
     color: white;
     text-decoration: underline;
 } */
-
-/* ------------------ Footer -------------------------- */
-/* Footer Container/screen display */
-/* .st-key-footer {
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 3rem;
-    background-color: #111B19;
-    padding: 2rem var(--page-gutter);
-} */
-
-/* Footer h2 elements */
-/* .st-key-footer h2 {
-    font-size: 1.1rem;
-    font-family: "Merriweather", Georgia, serif;
-    font-variant: no-common-ligatures tabular-nums;
-
-} */
-
-/* Footer paragraph (p) element */
-/* .st-key-footer p {
-    font-size: 0.9rem;
-    font-family: "Source Sans 3", Arial, sans-serif;
-    font-variant: no-common-ligatures tabular-nums;
-} */
-
-/* Footer links*/
-/* Normal appearance of every footer link */
-/* .st-key-footer a {
-    font-size: 0.9rem;
-    font-family: "Source Sans 3", Arial, sans-serif;
-    font-variant: no-common-ligatures tabular-nums;
-    text-decoration: none;
-} */
-/* streamlit navigation link (page_link()) */
-/* .st-key-footer [data-testid="stPageLink-NavLink"] [data-testid="stMarkdownContainer"] {
-    font-size: 0.9rem;
-    font-family: "Source Sans 3", Arial, sans-serif;
-    font-variant: no-common-ligatures tabular-nums;
-} */
-
-/* Appearance when mouse is hovered a link or selected using a keyboard */
-/* .st-key-footer a:hover,
-.st-key-footer a:focus-visible,
-.st-key-footer a:focus {
-    color: white;
-    text-decoration: underline;
-
-} */
-/* Appearance when a mouse is hovered a page navigation link or selected using a keyboard */
-/* .st-key-footer [data-testid="stPageLink-NavLink"],
-.st-key-footer [data-testid="stPageLink-NavLink"]:hover,
-.st-key-footer [data-testid="stPageLink-NavLink"]:active,
-.st-key-footer [data-testid="stPageLink-NavLink"]:focus,
-.st-key-footer [data-testid="stPageLink-NavLink"]:focus-visible {
-    background-color: transparent;
-} */
-
-/* .st-key-footer [data-testid="stPageLink-NavLink"]:hover span,
-.st-key-footer [data-testid="stPageLink-NavLink"]:focus-visible span {
-    color: white;
-    text-decoration: underline;
-} */
-
-/* link arrangement */
-/* custom class arrangement */
-/* .st-key-footer .footer-link-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-} */
-
-/* .st-key-footer .footer-link-list a {
-    display: block;
-    margin: 0.3rem;
-    line-height: 1.4;
-} */
-
-/* Adjust page_link() to custom arrangement */
-/* .st-key-footer [data-testid="stPageLink-NavLink"] {
-    margin: 0.3rem;
-    padding-block: 0.1rem;
-    line-height: 1.4;
-} */
-
-/* Unify display colour for text in footer */
-/* .st-key-footer a,
-.st-key-footer [data-testid="stPageLink-NavLink"] span {
-    color: white;
-}  */
