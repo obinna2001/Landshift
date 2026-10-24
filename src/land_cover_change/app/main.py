@@ -12,7 +12,7 @@ st.set_page_config(
 # Define the pages after applying the shared app configuration.
 home_page = st.Page("views/home.py", title="Home", default=True)
 map_page = st.Page("views/map.py", title="LULC Map")
-area_page = st.Page("views/class_area_analysis.py", title="Area Analysis")
+area_page = st.Page("views/area_analysis.py", title="Area Analysis")
 transition_page = st.Page("views/transition_analysis.py", title="Transition Analysis")
 
 page = st.navigation(
@@ -34,7 +34,7 @@ with st.container(key="footer"):
             st.html("<h2>Navigation</h2>")
             st.page_link("views/home.py", label="Home")
             st.page_link("views/map.py", label="LULC Map")
-            st.page_link("views/class_area_analysis.py", label="Area Analysis")
+            st.page_link("views/area_analysis.py", label="Area Analysis")
             st.page_link("views/transition_analysis.py", label="Transition Analysis")
 
         with column_two:
