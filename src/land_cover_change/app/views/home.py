@@ -59,6 +59,11 @@ with st.container(key="main-content"):
                         </div>
 
                         <div class="study-facts">
+                            <dt>Size</dt>
+                            <dd>57.64 km²</dd>
+                        </div>
+
+                        <div class="study-facts">
                             <dt>Landscape</dt>
                             <dd>Peri-urban</dd>
                         </div>
@@ -207,58 +212,48 @@ with st.container(key="main-content"):
     
     # Key findings
     with st.container(key="key-findings-section"):
-        with st.container(key="key-findings-content"):
-            st.html(
-                """
-                <h2
-                    id="key-findings"
-                    class="section-label section-anchor"
-                >
-                    Key findings
-                </h2>
+        st.html(
+            """
+            <section
+                id="key-findings"
+                class="section-shell"
+            >
+                <div class="key-findings-heading">
+                    <p class="section-label">Key findings</p>
 
-                <p class="key-findings-intro">
-                    Land-cover areas are derived from classified raster pixels and may not exactly match the vector 
-                    AOI area because boundary pixels are discrete.
-                </p>
-                """
-            )
+                    <h2 id="key-findings-header">The clearest signals of a changing landscape</h2>
 
-            with st.container(
-                key="findings-grid",
-                horizontal=True,
-                wrap=True,
-                gap="small",
-            ):
-                st.metric(
-                    "Study area",
-                    "57.64 km²",
-                    border=True,
-                )
+                    <p id="key-findings-introduction">
+                        Three measures capture the scale and direction of change across Uteh, 
+                        Iwogban and nearby communities, from the growth of built land and loss 
+                        of tree cover to the landscape’s largest mapped conversion.
+                    </p>
+                </div>
 
-                st.metric(
-                    "Built area in 2025",
-                    "36.43 km²",
-                    "+14.28 km² since 2016",
-                    delta_color="off",
-                    delta_arrow="off",
-                    border=True,
-                )
+                <div id="key-findings-cards">
 
-                st.metric(
-                    "Tree cover in 2025",
-                    "11.76 km²",
-                    "−19.30 km² since 2016",
-                    delta_color="off",
-                    delta_arrow="off",
-                    border=True,
-                )
+                    <div class="score-card">
+                        <p class="key-findings-card-label">Built area in 2025</p>
+                        <p class="key-findings-card-value">36.43 km²</p>
+                        <p class="key-findings-card-description">
+                            <span class="highlight-text">+14.28 km²</span> since 2016
+                        </p>
+                    </div>
 
-                st.metric(
-                    "Largest conversion",
-                    "3.40 km²",
-                    "Trees → built · 2016–2020",
-                    delta_color="off",
-                    delta_arrow="off",
-                    border=True,
-                )
+                    <div class="score-card">
+                        <p class="key-findings-card-label">Tree cover in 2025</p>
+                        <p class="key-findings-card-value">11.76 km²</p>
+                        <p class="key-findings-card-description">
+                            <span class="highlight-text negative">−19.30 km²</span> since 2016
+                        </p>
+                    </div>
+
+                    <div class="score-card">
+                        <p class="key-findings-card-label">Largest conversion</p>
+                        <p class="key-findings-card-value">3.40 km²</p>
+                        <p class="key-findings-card-description">Trees → built · 2016–2020</p>
+                    </div>
+                </div>
+            </section>    
+            """
+        )

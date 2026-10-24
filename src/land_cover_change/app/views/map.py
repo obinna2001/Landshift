@@ -1,7 +1,27 @@
 import streamlit as st
 
+with st.container(key="title-section"):
+    with st.container(key="title-content"):
+        st.html(
+            """
+            <p class="hero-eyebrow">
+                land cover land change map
+            </p>
 
-st.title("Land use Land cover map")
-st.write("This page is going to contain the LULC map of the study area across the years with folium OpenStreet map as " \
-    "the base map. It will also contain the legend and other interactive widgets."
-)
+            <h1 class="hero-title">
+                Explore the landscape across three study years    
+            </h1>
+
+            <p class="hero-lead">
+                Explore land-cover patterns across Uteh, Iwogban and nearby communities
+            </p>
+            """
+        )
+
+    with st.container(key="main-content"):
+        with st.container(key="map-selection"):
+            st.html("""<h1>Placeholder for map widgets - drop down</h1>""")
+
+            
+        with st.container(key="map"):
+            st.html("""<h1> Map box </h1>""")
