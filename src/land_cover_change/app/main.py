@@ -1,6 +1,14 @@
+from pathlib import Path
+import sys
+
 import streamlit as st
 
-from components.styles import load_app_style
+# Streamlit runs this file directly; make the repository's src package importable.
+SRC_ROOT = Path(__file__).resolve().parents[2]
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from land_cover_change.app.components.styles import load_app_style
 
 # Configure the shared browser tab and layout before creating any page elements.
 st.set_page_config(
