@@ -255,7 +255,7 @@ header[data-testid="stHeader"] a[data-testid="stTopNavLink"][aria-current="page"
 }
 
 .st-key-title-content .hero-lead {
-    margin: 1.48 0 0;
+    margin: 1.48rem 0 0;
     color: var(--muted-text);
     font-size: 1.25rem;
     font-weight: 450;
@@ -464,8 +464,9 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     letter-spacing: -0.025rem
 }
 
-/* Three methodology steps */
-.method-list {
+/* Shared base grid for methodology steps and data sources. */
+.method-list,
+.sources-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: clamp(1.5rem, 3vw, 2rem);
@@ -530,7 +531,8 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     font-family: var(--font-sans);
 }
 
-#data-sources-heading {
+#data-sources-heading,
+#key-findings-header {
     margin: 0 0 0.89rem;
     color: var(--ink);
     font-size: clamp(1.875rem, 2.4vw, 2rem);
@@ -539,20 +541,13 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     letter-spacing: -0.025rem
 }
 
-.sources-introduction {
+.sources-introduction,
+#key-findings-introduction {
     margin: 0 0 1.75rem;
     color: var(--muted-text);
     font-size: 1.02rem;
     line-height: 1.6;
     text-align: start;
-}
-
-/* style source list arrangement based on screen size */
-/* Default: One column per row */
-.sources-list {
-    display: grid;
-    grid-template-columns: 1fr;             
-    gap: clamp(1.5rem, 3vw, 2rem);
 }
 
 .sources-list article {
@@ -627,23 +622,6 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     font-family: var(--font-sans);
 }
 
-#key-findings-header {
-    margin: 0 0 0.89rem;
-    color: var(--ink);
-    font-size: clamp(1.875rem, 2.4vw, 2rem);
-    font-weight: 460;
-    line-height: 1.2;
-    letter-spacing: -0.025rem
-}
-
-#key-findings-introduction {
-    margin: 0 0 1.75rem;
-    color: var(--muted-text);
-    font-size: 1.02rem;
-    line-height: 1.6;
-    text-align: start;
-}
-
 /* --------- Score card ----------- */
 /* ----- Default arrangement on screen ------------- */
 #key-findings-cards {
@@ -658,7 +636,6 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
 @media (min-width: 912px) {
     #key-findings-cards {
         grid-template-columns: repeat(3, 1fr);
-        margin: 0;
     }
 }
 
@@ -703,7 +680,7 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
 }
 
 
-/* ------------------------------------ MAP AND AREA ANALYSIS PAGE ------------------------------------- */
+/* ------------------------------------ AREA ANALYSIS PAGE ------------------------------------- */
 /* Page-scoped rules preserve all other pages and the shared footer. */
 .st-key-lulc-workspace {
     width: 100%;
@@ -777,7 +754,6 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     font-size: .8125rem;
 }
 .st-key-lulc-workspace .lulc-shared-legend .lulc-legend-label {
-    font-size: .8125rem;
     white-space: nowrap;
 }
 .st-key-lulc-workspace .lulc-legend-swatch {
@@ -954,7 +930,6 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     font-family: var(--font-sans, Inter, system-ui, sans-serif);
     font-size: clamp(1.875rem, 2.4vw, 2rem);
     font-weight: 460;
-    line-height: 1.2;
     letter-spacing: -.025rem;
 }
 .st-key-lulc-interpretation .lulc-story-copy {
@@ -1138,7 +1113,6 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
         flex: 1 1 calc(50% - .7rem);
         min-width: 130px;
     }
-    .st-key-lulc-analysis { margin-top: .75rem; padding-top: var(--section-space-y); }
     .st-key-lulc-analysis .lulc-class-chart-axis { margin-left: 44px; margin-right: 80px; }
     .st-key-lulc-analysis .lulc-class-comparison-row { grid-template-columns: 1fr; gap: 11px; }
     .st-key-lulc-analysis .lulc-class-bar-line { grid-template-columns: 34px minmax(0, 1fr) 70px; }
