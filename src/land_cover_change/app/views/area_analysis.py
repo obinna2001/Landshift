@@ -194,12 +194,13 @@ def render_explorer() -> None:
                 "views/transition_analysis.py", label="What changed into what? →", width="content",
             )
 
+
 with st.container(key="title-section"):
     with st.container(key="title-content"):
         st.markdown(
             """
             <p class="hero-eyebrow">
-                Land-cover change map and Area analysis
+                ~ Area Analysis
             </p>
 
             <h1 class="hero-title">

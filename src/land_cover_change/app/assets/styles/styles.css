@@ -247,6 +247,8 @@ header[data-testid="stHeader"] a[data-testid="stTopNavLink"][aria-current="page"
 }
 
 .st-key-title-content .hero-title {
+    margin: .5rem 0 0;
+    padding-block: 0;
     color: var(--ink);
     font-size: clamp(2.375rem, 5.4vw, 3.975rem);
     font-weight: 500;
@@ -255,7 +257,7 @@ header[data-testid="stHeader"] a[data-testid="stTopNavLink"][aria-current="page"
 }
 
 .st-key-title-content .hero-lead {
-    margin: 1.48rem 0 0;
+    margin: .75rem 0 0;
     color: var(--muted-text);
     font-size: 1.25rem;
     font-weight: 450;
@@ -682,7 +684,8 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
 
 /* ------------------------------------ AREA ANALYSIS PAGE ------------------------------------- */
 /* Page-scoped rules preserve all other pages and the shared footer. */
-.st-key-lulc-workspace {
+.st-key-lulc-workspace,
+.st-key-transition-workspace {
     width: 100%;
     max-width: var(--page-content-width, 94vw);
     margin-inline: auto;
@@ -816,7 +819,8 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     justify-content: flex-end;
     gap: 11px;
 }
-.st-key-lulc-unit-control .lulc-unit-label {
+.st-key-lulc-unit-control .lulc-unit-label,
+.transition-period-label {
     display: block;
     color: #3f4b46;
     font-family: var(--font-sans, Inter, system-ui, sans-serif);
@@ -825,7 +829,8 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     line-height: normal;
     white-space: nowrap;
 }
-.st-key-lulc-unit-control [data-testid="stButtonGroup"] [role="radiogroup"] {
+.st-key-lulc-unit-control [data-testid="stButtonGroup"] [role="radiogroup"],
+.st-key-transition-period-control [data-testid="stButtonGroup"] [role="radiogroup"] {
     display: flex;
     flex-wrap: nowrap;
     max-width: none;
@@ -836,7 +841,8 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     border-radius: 5px;
     background: #f6f8f4;
 }
-.st-key-lulc-unit-control [data-testid="stButtonGroup"] button {
+.st-key-lulc-unit-control [data-testid="stButtonGroup"] button,
+.st-key-transition-period-control [data-testid="stButtonGroup"] button {
     min-height: 0;
     margin: 0;
     padding: 7px 11px;
@@ -850,11 +856,13 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     line-height: normal;
     white-space: nowrap;
 }
-.st-key-lulc-unit-control [data-testid="stButtonGroup"] button[aria-checked="true"] {
+.st-key-lulc-unit-control [data-testid="stButtonGroup"] button[aria-checked="true"],
+.st-key-transition-period-control [data-testid="stButtonGroup"] button[aria-checked="true"] {
     background: #16264a;
     color: white;
 }
-.st-key-lulc-unit-control [data-testid="stButtonGroup"] button * {
+.st-key-lulc-unit-control [data-testid="stButtonGroup"] button *,
+.st-key-transition-period-control [data-testid="stButtonGroup"] button * {
     color: inherit;
     font-family: inherit;
     font-size: inherit;
@@ -1101,7 +1109,8 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
     .st-key-lulc-workspace .lulc-shared-legend .lulc-legend-label {
         white-space: normal;
     }
-    .st-key-lulc-workspace {
+    .st-key-lulc-workspace,
+    .st-key-transition-workspace {
         max-width: 100%;
         padding: 1.5rem 1rem 1.5rem;
     }
@@ -1122,4 +1131,58 @@ div[data-testid="stVerticalBlock"].st-key-main-content {
         gap: 19px;
     }
     .st-key-lulc-interpretation [data-testid="stColumn"] { width: 100%; }
+}
+
+
+/* -------------------------------- TRANSITION ANALYSIS PERIOD -------------------------------- */
+.st-key-transition-toolbar {
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.st-key-transition-period-control {
+    align-items: center;
+    gap: 11px;
+    flex-wrap: nowrap;
+    max-width: 100%;
+}
+.st-key-transition-toolbar [data-testid="stDownloadButton"] button {
+    min-height: 0;
+    padding: 7px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: .875rem;
+    line-height: normal;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.st-key-transition-toolbar [data-testid="stDownloadButton"] button * {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+@media (max-width: 760px) {
+    .st-key-transition-toolbar {
+        align-items: flex-start;
+        gap: 13px;
+    }
+    .st-key-transition-period-control { gap: 8px; }
+}
+@media (max-width: 380px) {
+    .st-key-transition-period-control {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .st-key-transition-period-control [data-testid="stButtonGroup"] {
+        min-width: 0;
+        max-width: 100%;
+    }
+    .st-key-transition-period-control [role="radiogroup"] {
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
 }
