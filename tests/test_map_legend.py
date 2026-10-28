@@ -3,7 +3,7 @@ from collections.abc import Mapping
 import folium
 import pytest
 
-from land_cover_change.app.components.map_legend import (
+from land_cover_change.app.components.legend import (
     build_dynamic_world_legend,
 )
 from land_cover_change.config.config import DynamicWorldClass
@@ -111,7 +111,7 @@ def test_build_dynamic_world_legend_rejects_invalid_input(
     error_match: str,
 ) -> None:
     with pytest.raises(error_type, match=error_match):
-        build_dynamic_world_legend(  # type: ignore[arg-type]
-            classes,
-            title=title,
+        build_dynamic_world_legend(      # type: ignore[arg-type]
+            classes,        #type: ignore
+            title=title,    #type: ignore
         )

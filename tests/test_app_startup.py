@@ -35,7 +35,7 @@ app = AppTest.from_file(str(app_path), default_timeout=30).run()
 assert not app.exception, [error.message for error in app.exception]
 from land_cover_change.config.config import resolved_config
 resolved_config.dataset.raw_dataset.aoi_lulc = sys.argv[2]
-app.switch_page("views/map.py").run()
+app.switch_page("views/area_analysis.py").run()
 assert not app.exception, [error.message for error in app.exception]
 assert len(app.get("iframe")) == 1
 assert app.get("iframe")[0].proto.srcdoc.count("L.map(") == 2

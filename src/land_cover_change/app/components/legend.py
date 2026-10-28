@@ -2,7 +2,7 @@ from collections.abc import Mapping
 from html import escape
 import re
 
-from branca.element import MacroElement, Template
+from branca.element import MacroElement, Template       #type: ignore
 
 from land_cover_change.config.config import DynamicWorldClass
 

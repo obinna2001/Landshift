@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from land_cover_change.app.components.lulc_explorer import (
+from land_cover_change.app.components.area_analysis import (
     build_class_chart,
     build_comparison_details,
     build_download_table,

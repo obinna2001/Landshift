@@ -6,11 +6,11 @@ from html import escape
 import math
 from pathlib import Path
 
-from branca.element import Element, Figure, MacroElement, Template
+from branca.element import Element, Figure, MacroElement, Template      #type: ignore
 import folium
 import pandas as pd
 
-from land_cover_change.app.components.map_legend import build_dynamic_world_legend
+from land_cover_change.app.components.legend import build_dynamic_world_legend
 from land_cover_change.config.config import DynamicWorldClass
 from land_cover_change.data_access.raster import discover_lulc_rasters
 from land_cover_change.services.raster import RasterMapOverlay
@@ -69,7 +69,7 @@ def _map_controls(map_: folium.Map, year: int) -> None:
         {% endmacro %}
         """
     )
-    controls.year = year
+    controls.year = year        #type: ignore
     controls.add_to(map_)
 
 
@@ -93,7 +93,7 @@ def build_explorer_map(
     # Validate registry names and colours using the established shared component.
     build_dynamic_world_legend(classes)
     height = 600
-    figure = Figure(width="100%", height=height)
+    figure = Figure(width="100%", height=height)        #type: ignore
     figure.header.add_child(Element(
         """<style>
         html, body { width:100%; height:100%; margin:0; padding:0; }
@@ -132,7 +132,7 @@ def build_explorer_map(
             max_zoom=19,
             control=False,
         ).add_to(map_)
-        folium.raster_layers.ImageOverlay(
+        folium.raster_layers.ImageOverlay(      #type: ignore
             overlay.image,
             bounds=overlay.bounds,
             name=f"Dynamic World {year}",
@@ -140,7 +140,7 @@ def build_explorer_map(
             pixelated=True,
             mercator_project=False,
             interactive=False,
-        ).add_to(map_)
+        ).add_to(map_)    
         map_.fit_bounds(overlay.bounds, padding=[24, 24])
         _map_controls(map_, year)
         maps.append(map_)
@@ -163,8 +163,8 @@ def build_explorer_map(
         }());
         {% endmacro %}
         """)
-        synchronization.first = maps[0].get_name()
-        synchronization.second = maps[1].get_name()
+        synchronization.first = maps[0].get_name()          #type: ignore
+        synchronization.second = maps[1].get_name()         #type: ignore
         figure.add_child(synchronization)
     return figure.render(), height
 
