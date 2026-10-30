@@ -161,24 +161,25 @@ def render_explorer() -> None:
             st.html(build_class_chart(areas, classes, selected, unit=unit))
 
             with st.container(key="lulc-interpretation"):
-                story_heading, story_copy = st.columns([0.8, 1.5], gap="medium")
-                with story_heading:
-                    story_scope = (
-                        f"Selected comparison · {selected[0]}–{selected[-1]}"
-                        if comparing else
-                        f"{selected[0]} snapshot · wider context from {min(years)}–{max(years)}"
-                    )
-                    st.html(
-                        '<p class="lulc-eyebrow">Reading the change</p>'
-                        '<h2 class="lulc-section-title">How the balance of land cover shifted</h2>'
-                        f'<p class="lulc-story-scope">{story_scope}</p>'
-                    )
-                with story_copy:
-                    paragraphs = "".join(
-                        f'<p class="lulc-story-copy">{escape(paragraph)}</p>'
-                        for paragraph in describe_composition(areas, classes, selected)
-                    )
-                    st.html(f'<div class="lulc-story-paragraphs">{paragraphs}</div>')
+                story_scope = (
+                    f"Selected comparison · {selected[0]}–{selected[-1]}"
+                    if comparing else
+                    f"{selected[0]} snapshot · wider context from {min(years)}–{max(years)}"
+                )
+                paragraphs = "".join(
+                    f'<p class="lulc-story-copy">{escape(paragraph)}</p>'
+                    for paragraph in describe_composition(areas, classes, selected)
+                )
+                st.html(
+                    '<div class="lulc-story-grid">'
+                    '<div class="lulc-story-heading">'
+                    '<p class="lulc-eyebrow">Reading the change</p>'
+                    '<h2 class="lulc-section-title">How the balance of land cover shifted</h2>'
+                    f'<p class="lulc-story-scope">{story_scope}</p>'
+                    '</div>'
+                    f'<div class="lulc-story-paragraphs">{paragraphs}</div>'
+                    '</div>'
+                )
 
             st.markdown(
                 build_comparison_details(areas, classes, selected),
