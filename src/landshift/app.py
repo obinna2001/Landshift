@@ -87,7 +87,7 @@ def main():
 
             st.html(
                 '<div class="footer-meta">'
-                '<p class="footer-copyright">&copy; 2026 Okey Obinna. All rights reserved.</p>'
+                '<p class="footer-copyright">&copy; 2026, Okey Obinna</p>'
                 '<p class="footer-study">2016–2025 · Benin City</p>'
                 '</div>'
             )
