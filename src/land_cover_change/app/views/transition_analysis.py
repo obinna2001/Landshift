@@ -1,13 +1,32 @@
 from functools import partial
 from itertools import combinations
+import logging
 from pathlib import Path
 
+import pandas as pd
 from rasterio.errors import RasterioIOError
 import streamlit as st
 
 from land_cover_change.app.components.area_analysis import discover_year_paths
-from land_cover_change.app.components.transition_analysis import build_transition_csv
+from land_cover_change.app.components.transition_analysis import (
+    build_transition_content,
+    build_transition_matrix,
+    transition_matrix_csv,
+)
 from land_cover_change.config.config import resolved_config
+
+
+logger = logging.getLogger(__name__)
+
+
+@st.cache_data(show_spinner=False)
+def load_transition_matrix(
+    earlier_file: tuple[str, int, int],
+    later_file: tuple[str, int, int],
+    class_values: tuple[int, ...],
+) -> pd.DataFrame:
+    """Share selected-period measurements between the figures and CSV downloads."""
+    return build_transition_matrix(earlier_file[0], later_file[0], class_values)
 
 
 @st.cache_data(show_spinner=False)
@@ -17,11 +36,12 @@ def load_transition_csv(
     registry: tuple[tuple[int, str], ...],
 ) -> str:
     """Cache downloads by the selected files, their revisions, and class labels."""
-    return build_transition_csv(earlier_file[0], later_file[0], dict(registry))
+    matrix = load_transition_matrix(earlier_file, later_file, tuple(value for value, _ in registry))
+    return transition_matrix_csv(matrix, dict(registry))
 
 
-def render_period_toolbar() -> None:
-    """Select an available comparison period and download its transition matrix."""
+def render_transition_analysis() -> None:
+    """Select a period and render the figures, full matrix, and matching downloads."""
     try:
         paths = discover_year_paths(resolved_config.dataset.raw_dataset.aoi_lulc)
     except (OSError, ValueError, RasterioIOError):
@@ -58,11 +78,33 @@ def render_period_toolbar() -> None:
             (value, definition.name.capitalize())
             for value, definition in resolved_config.dynamic_world.classes.items()
         )
+        try:
+            earlier_file, later_file = signature(paths[earlier]), signature(paths[later])
+        except OSError:
+            logger.exception("The selected transition rasters could not be accessed")
+            st.error("The selected transition period could not be prepared. Check the selected study rasters.")
+            return
         st.download_button(
             "Download matrix ↓",
-            data=partial(load_transition_csv, signature(paths[earlier]), signature(paths[later]), registry),
+            data=partial(load_transition_csv, earlier_file, later_file, registry),
             file_name=f"study-transitions-{earlier}-{later}.csv", mime="text/csv",
             key="transition-download", on_click="ignore", type="tertiary", width="content",
+        )
+    try:
+        matrix = load_transition_matrix(earlier_file, later_file, tuple(value for value, _ in registry))
+        content = build_transition_content(matrix, resolved_config.dynamic_world.classes, (earlier, later))
+    except (OSError, ValueError, RasterioIOError):
+        logger.exception("The selected transition period could not be prepared")
+        st.error("The selected transition period could not be prepared. Check the selected study rasters.")
+        return
+    st.markdown(content, unsafe_allow_html=True)
+    with st.container(
+        key="transition-next-perspective", horizontal=True,
+        horizontal_alignment="distribute", vertical_alignment="center", gap=None,
+    ):
+        st.html('<span class="transition-return-label">Return to the spatial picture</span>', width="content")
+        st.page_link(
+            "views/area_analysis.py", label="Explore the land-cover map →", width="content",
         )
 
 
@@ -88,4 +130,4 @@ with st.container(key="title-section"):
 
 
 with st.container(key="transition-workspace"):
-    render_period_toolbar()
+    render_transition_analysis()
