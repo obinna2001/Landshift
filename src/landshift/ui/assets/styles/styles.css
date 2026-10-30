@@ -102,11 +102,63 @@ header[data-testid="stHeader"] a[data-testid="stTopNavLink"],
 header[data-testid="stHeader"] a[data-testid="stTopNavLink"]:hover,
 header[data-testid="stHeader"] a[data-testid="stTopNavLink"]:active,
 header[data-testid="stHeader"] a[data-testid="stTopNavLink"]:focus,
-header[data-testid="stHeader"] a[data-testid="stTopNavLink"]:focus-visible,
 header[data-testid="stHeader"] a[data-testid="stTopNavLink"][aria-current="page"] {
     background: transparent !important;
     box-shadow: none !important;
     outline: none !important;
+}
+
+/* Show a keyboard focus ring (mouse clicks stay ring-free); !important beats the :focus reset above */
+header[data-testid="stHeader"] a[data-testid="stTopNavLink"]:focus-visible {
+    outline: 2px solid var(--nav-active-colour) !important;
+    outline-offset: -4px;
+}
+
+/* Mobile sidebar drawer: short, translucent light panel with navy text (default 300px width) */
+section[data-testid="stSidebar"] {
+    align-self: flex-start;
+    height: auto !important;
+    background-color: rgb(255 255 255 / 0.6);   /* >= 0.56 keeps navy text 4.5:1 even over black */
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    border-right: 1px solid var(--sage-border);
+    border-bottom: 1px solid var(--sage-border);
+    box-shadow: none;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+    height: auto;
+    padding-bottom: 0.75rem;
+    background-color: transparent;
+}
+
+/* The app puts nothing in st.sidebar; drop the empty 120px user-content block */
+section[data-testid="stSidebar"] [data-testid="stSidebarUserContent"]:not(:has([data-testid="stElementContainer"])) {
+    display: none;
+}
+
+[data-testid="stSidebarNavLink"] span,
+[data-testid="stSidebarNavLink"] p,
+[data-testid="stSidebarCollapseButton"] [data-testid="stIconMaterial"] {
+    color: var(--nav-link-colour) !important;
+}
+
+a[data-testid="stSidebarNavLink"] {
+    border-radius: 0;
+}
+
+a[data-testid="stSidebarNavLink"]:hover {
+    background-color: var(--surface-muted);
+}
+
+a[data-testid="stSidebarNavLink"][aria-current="page"] {
+    background-color: var(--sage);
+    border-radius: 0;
+}
+
+a[data-testid="stSidebarNavLink"][aria-current="page"] span,
+a[data-testid="stSidebarNavLink"][aria-current="page"] p {
+    font-weight: 700;
 }
 
 /* Add special text colour to selected links */
