@@ -1,7 +1,5 @@
 # Landshift
 
-**Urban Land Cover Change: Uteh/Iwogban and Environs, Benin City (2016–2025)**
-
 Landshift is a Python project that measures how land cover has changed in a study area near Benin City, Nigeria, using Dynamic World data for 2016, 2020 and 2025. The results, including the maps, the class areas and the transitions between classes, can be explored in a Streamlit application.
 
 ## Purpose
