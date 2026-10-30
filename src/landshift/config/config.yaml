@@ -1,7 +1,7 @@
 config:
   app_config:
-    name: "Urban Land Cover Change: Uteh/Iwogban and Environs, Benin City (2016–2025)"
-    description: ""
+    name: "Landshift"
+    description: "A Streamlit application that shows land cover change in Uteh, Iwogban and nearby areas of Benin City, Nigeria, from 2016 to 2025."
 
   dynamic_world:
     classes:
