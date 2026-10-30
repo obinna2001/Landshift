@@ -3,10 +3,10 @@ from collections.abc import Mapping
 import folium
 import pytest
 
-from land_cover_change.app.components.legend import (
+from landshift.ui.components.legend import (
     build_dynamic_world_legend,
 )
-from land_cover_change.config.config import DynamicWorldClass
+from landshift.config.config import DynamicWorldClass
 
 
 def _class(name: str, colour: str) -> DynamicWorldClass:

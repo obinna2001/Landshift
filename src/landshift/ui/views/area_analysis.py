@@ -7,7 +7,7 @@ import pandas as pd
 from rasterio.errors import RasterioIOError
 import streamlit as st
 
-from land_cover_change.app.components.area_analysis import (
+from landshift.ui.components.area_analysis import (
     build_class_chart,
     build_comparison_details,
     build_explorer_map,
@@ -15,9 +15,9 @@ from land_cover_change.app.components.area_analysis import (
     describe_composition,
     discover_year_paths,
 )
-from land_cover_change.config.config import DynamicWorldClass, resolved_config
-from land_cover_change.services.class_area import build_class_area_table
-from land_cover_change.services.raster import RasterMapOverlay, prepare_map_overlay
+from landshift.config.config import DynamicWorldClass, resolved_config
+from landshift.services.class_area import build_class_area_table
+from landshift.services.raster import RasterMapOverlay, prepare_map_overlay
 
 
 @st.cache_data(show_spinner=False)
@@ -192,7 +192,7 @@ def render_explorer() -> None:
         ):
             st.html('<span class="lulc-next-label">Next perspective</span>', width="content")
             st.page_link(
-                "views/transition_analysis.py", label="What changed into what? →", width="content",
+                "ui/views/transition_analysis.py", label="What changed into what? →", width="content",
             )
 
 

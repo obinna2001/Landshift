@@ -7,13 +7,13 @@ import pandas as pd
 from rasterio.errors import RasterioIOError
 import streamlit as st
 
-from land_cover_change.app.components.area_analysis import discover_year_paths
-from land_cover_change.app.components.transition_analysis import (
+from landshift.ui.components.area_analysis import discover_year_paths
+from landshift.ui.components.transition_analysis import (
     build_transition_content,
     build_transition_matrix,
     transition_matrix_csv,
 )
-from land_cover_change.config.config import resolved_config
+from landshift.config.config import resolved_config
 
 
 logger = logging.getLogger(__name__)
@@ -104,7 +104,7 @@ def render_transition_analysis() -> None:
     ):
         st.html('<span class="transition-return-label">Return to the spatial picture</span>', width="content")
         st.page_link(
-            "views/area_analysis.py", label="Explore the land-cover map →", width="content",
+            "ui/views/area_analysis.py", label="Explore the land-cover map →", width="content",
         )
 
 

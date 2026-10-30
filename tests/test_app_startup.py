@@ -8,7 +8,7 @@ import sys
 import numpy as np
 
 
-APP = Path(__file__).resolve().parents[1] / "src/land_cover_change/app/main.py"
+APP = Path(__file__).resolve().parents[1] / "src/landshift/app.py"
 
 
 def test_app_starts_and_opens_lulc_map_without_pythonpath(tmp_path, raster_factory):
@@ -30,15 +30,17 @@ import sys
 from streamlit.testing.v1 import AppTest
 
 app_path = Path(sys.argv[1])
-assert str(app_path.parents[2]) not in sys.path
+assert str(app_path.parents[1]) not in sys.path
 app = AppTest.from_file(str(app_path), default_timeout=30).run()
 assert not app.exception, [error.message for error in app.exception]
-from land_cover_change.config.config import resolved_config
+from landshift.config.config import resolved_config
 resolved_config.dataset.raw_dataset.aoi_lulc = sys.argv[2]
-app.switch_page("views/area_analysis.py").run()
+app.switch_page("ui/views/area_analysis.py").run()
 assert not app.exception, [error.message for error in app.exception]
 assert len(app.get("iframe")) == 1
 assert app.get("iframe")[0].proto.srcdoc.count("L.map(") == 2
+app.switch_page("ui/views/transition_analysis.py").run()
+assert not app.exception, [error.message for error in app.exception]
 print("Startup and LULC navigation succeeded")
 '''
     completed = subprocess.run(

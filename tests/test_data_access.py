@@ -5,7 +5,7 @@ import geopandas as gpd
 import pytest
 from shapely.geometry import Point, Polygon
 
-from land_cover_change.data_access.vector import (
+from landshift.data_access.vector import (
     load_vector_data,
     save_shapefile,
 )
@@ -125,7 +125,7 @@ def test_save_shapefile_writes_reloadable_data(
     assert saved_path.is_file()
     assert list(reloaded.columns) == ["label", "geometry"]
     assert reloaded.crs == data.crs
-    assert reloaded.geometry.iloc[0] == data.geometry.iloc[0]
+    assert reloaded.geometry.iloc[0].equals(data.geometry.iloc[0])
 
 
 @pytest.mark.parametrize(

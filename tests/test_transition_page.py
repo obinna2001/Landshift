@@ -13,14 +13,14 @@ from rasterio.transform import from_origin
 import pytest
 from streamlit.testing.v1 import AppTest
 
-from land_cover_change.app.components.transition_analysis import (
+from landshift.ui.components.transition_analysis import (
     build_transition_content,
     build_transition_csv,
 )
-from land_cover_change.config.config import DynamicWorldClass, resolved_config
+from landshift.config.config import DynamicWorldClass, resolved_config
 
 
-APP = Path(__file__).resolve().parents[1] / "src/land_cover_change/app/main.py"
+APP = Path(__file__).resolve().parents[1] / "src/landshift/app.py"
 
 
 def test_transition_csv_uses_common_valid_pixels_and_square_kilometres(raster_factory):
@@ -47,7 +47,7 @@ def test_period_control_keeps_selection_and_download_is_deferred(raster_factory,
         raster_factory(f"lulc_{year}.tif", np.array(pixels, dtype="uint8"), **arguments)
     monkeypatch.setattr(resolved_config.dataset.raw_dataset, "aoi_lulc", str(tmp_path))
     app = AppTest.from_file(str(APP), default_timeout=30).run()
-    app.switch_page("views/transition_analysis.py").run()
+    app.switch_page("ui/views/transition_analysis.py").run()
     assert not app.exception
     periods = app.button_group(key="transition-period")
     assert periods.options == ["2016–2020", "2020–2025", "2016–2025"]
@@ -166,7 +166,7 @@ def test_transition_page_reports_misaligned_selected_rasters(raster_factory, tmp
         )
     monkeypatch.setattr(resolved_config.dataset.raw_dataset, "aoi_lulc", str(tmp_path))
     app = AppTest.from_file(str(APP), default_timeout=30).run()
-    app.switch_page("views/transition_analysis.py").run()
+    app.switch_page("ui/views/transition_analysis.py").run()
     assert not app.exception
     assert any("selected transition period could not be prepared" in error.value for error in app.error)
     assert all('<div class="transition-analysis-content"' not in element.value for element in app.markdown)
@@ -178,7 +178,7 @@ def test_period_toolbar_reports_insufficient_study_data(file_count, raster_facto
         raster_factory("lulc_2025.tif", np.array([[1, 6]], dtype="uint8"))
     monkeypatch.setattr(resolved_config.dataset.raw_dataset, "aoi_lulc", str(tmp_path))
     app = AppTest.from_file(str(APP), default_timeout=30).run()
-    app.switch_page("views/transition_analysis.py").run()
+    app.switch_page("ui/views/transition_analysis.py").run()
     assert not app.exception
     assert app.info
     assert not app.button_group

@@ -8,10 +8,10 @@ import numpy as np
 import pytest
 from streamlit.testing.v1 import AppTest
 
-from land_cover_change.config.config import resolved_config
+from landshift.config.config import resolved_config
 
 
-APP = Path(__file__).resolve().parents[1] / "src/land_cover_change/app/main.py"
+APP = Path(__file__).resolve().parents[1] / "src/landshift/app.py"
 
 
 def comparison_table(app):
@@ -34,7 +34,7 @@ def explorer(raster_factory, tmp_path, monkeypatch):
         raster_factory(f"lulc_{year}.tif", np.array(pixels, dtype="uint8"))
     monkeypatch.setattr(resolved_config.dataset.raw_dataset, "aoi_lulc", str(tmp_path))
     app = AppTest.from_file(str(APP), default_timeout=30).run()
-    app.switch_page("views/area_analysis.py").run()
+    app.switch_page("ui/views/area_analysis.py").run()
     assert not app.exception
     assert all("API key" not in notice.value for notice in app.info)
     shared_legends = [element.proto.body for element in app.get("html")

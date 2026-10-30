@@ -10,11 +10,11 @@ from branca.element import Element, Figure, MacroElement, Template      #type: i
 import folium
 import pandas as pd
 
-from land_cover_change.app.components.legend import build_dynamic_world_legend
-from land_cover_change.config.config import DynamicWorldClass
-from land_cover_change.data_access.raster import discover_lulc_rasters
-from land_cover_change.services.raster import RasterMapOverlay
-from land_cover_change.utils.utils import extract_year
+from landshift.ui.components.legend import build_dynamic_world_legend
+from landshift.config.config import DynamicWorldClass
+from landshift.data_access.raster import discover_lulc_rasters
+from landshift.services.raster import RasterMapOverlay
+from landshift.utils.utils import extract_year
 
 
 def discover_year_paths(directory: str | Path) -> dict[int, Path]:

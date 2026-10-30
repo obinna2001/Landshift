@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from land_cover_change.app.components.area_analysis import (
+from landshift.ui.components.area_analysis import (
     build_class_chart,
     build_comparison_details,
     build_download_table,
@@ -18,8 +18,8 @@ from land_cover_change.app.components.area_analysis import (
     describe_composition,
     discover_year_paths,
 )
-from land_cover_change.config.config import DynamicWorldClass
-from land_cover_change.services.raster import RasterMapOverlay
+from landshift.config.config import DynamicWorldClass
+from landshift.services.raster import RasterMapOverlay
 
 
 @pytest.fixture

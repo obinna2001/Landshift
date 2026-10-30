@@ -9,13 +9,13 @@ import re
 
 import pandas as pd
 
-from land_cover_change.config.config import DynamicWorldClass
-from land_cover_change.services.raster import (
+from landshift.config.config import DynamicWorldClass
+from landshift.services.raster import (
     calculate_pixel_area,
     prepare_analysis_raster,
     validate_raster_alignment,
 )
-from land_cover_change.services.transition import (
+from landshift.services.transition import (
     calculate_transition_matrix,
     summarize_transitions,
     transition_areas,

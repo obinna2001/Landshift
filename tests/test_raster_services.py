@@ -7,11 +7,11 @@ from pandas.testing import assert_frame_equal
 import pytest
 from rasterio.errors import RasterioIOError
 
-from land_cover_change.services.class_area import (
+from landshift.services.class_area import (
     build_class_count_table,
     count_land_cover_classes,
 )
-from land_cover_change.services.raster import (
+from landshift.services.raster import (
     colour_land_cover,
     prepare_map_overlay,
 )

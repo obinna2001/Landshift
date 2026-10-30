@@ -6,7 +6,7 @@ import pytest
 from rasterio.crs import CRS
 from rasterio.errors import RasterioIOError
 
-from land_cover_change.data_access.raster import (
+from landshift.data_access.raster import (
     discover_lulc_rasters,
     extract_raster_map_metadata,
 )
