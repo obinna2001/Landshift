@@ -11,7 +11,7 @@ from shapely.geometry import (
     Polygon,
 )
 
-from land_cover_change.services.aoi import (
+from landshift.services.aoi import (
     normalize_aoi,
     select_administrative_area,
 )

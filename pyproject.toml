@@ -1,7 +1,7 @@
 [project]
-name = "Urban_Land_Cover_Change"
+name = "Landshift"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Streamlit application that shows land cover change in Uteh, Iwogban and nearby areas of Benin City, Nigeria, from 2016 to 2025."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
