@@ -1,12 +1,9 @@
 # Files and folders ignored by git
 .venv
-/docs/IMPLEMENTATION_GUIDE.md
 /docs
 .DS_Store
 AGENTS.md
-/wireframe/
-METHODOLOGY-ALIGNMENT-TODO.md
-/wireframe-proposals/
+
 
 # Ignore all __pycache__ directories
 __pycache__/
